@@ -4,3 +4,6 @@ dist/
 .env
 # Base de datos
 database
+
+#Carpeta zips
+zips
