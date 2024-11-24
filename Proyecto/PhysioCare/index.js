@@ -2,11 +2,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/physiocare')
-    .then(() => {
-    console.log('Successful connection to MongoDB');
-    loadData();
-    })
-    .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-    });
+// Conectar a MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/physiocare')
+    .then(() => console.log('Conectado a MongoDB'))
+    .catch(err => console.error('Error conectando a MongoDB:', err));
+
+// Configurar middleware
+app.use(express.json());
+
+// Importar y cargar rutas
+const patientRoutes = require('./routes/patientRoutes');
+const physioRoutes = require('./routes/physioRoutes');
+const recordRoutes = require('./routes/recordRoutes');
+
+app.use('/patients', patientRoutes);
+app.use('/physios', physioRoutes);
+app.use('/records', recordRoutes);
+
+// Iniciar servidor
+const PORT = 8080;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
