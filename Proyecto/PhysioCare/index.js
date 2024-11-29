@@ -1,26 +1,31 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: ".env" });
+
 const app = express();
 
-// Conectar a MongoDB
+const DB_URL = process.env.DB_URL || "mongodb://127.0.0.1:27017/physiocare";
+
 mongoose
-    .connect("mongodb://127.0.0.1:27017/physiocare")
+    .connect(DB_URL)
     .then(() => console.log("Conectado a MongoDB"))
     .catch((err) => console.error("Error conectando a MongoDB:", err));
 
-// Importar y cargar rutas
 const patientRoutes = require("./routes/patientRoutes");
 const physioRoutes = require("./routes/physioRoutes");
 const recordRoutes = require("./routes/recordRoutes");
+const authRoutes = require("./routes/authRoutes");
 
-// Configurar middleware
 app.use(express.json());
 app.use("/patients", patientRoutes);
 app.use("/physios", physioRoutes);
 app.use("/records", recordRoutes);
+app.use("/auth", authRoutes);
 
-// Iniciar servidor
-const PORT = 8080;
+
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

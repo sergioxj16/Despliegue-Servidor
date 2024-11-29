@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Record = require("../models/record");
 const Patient = require("../models/patient");
+const { protectRoute } = require("../auth/auth.js");
 
-// GET /records - Obtener todos los expedientes médicos
-router.get("/", async (req, res) => {
+
+// GET /records - Obtener todos los expedientes medicos
+router.get("/", protectRoute(["admin", "physio"]), async (req, res) => {
     try {
         const records = await Record.find();
         if (records.length === 0) {
@@ -26,7 +28,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET /records/find - Buscar expedientes por apellido del paciente
-router.get("/find", async (req, res) => {
+router.get("/find", protectRoute(["admin", "physio"]), async (req, res) => {
     const { surname } = req.query;
 
     try {
@@ -67,8 +69,9 @@ router.get("/find", async (req, res) => {
 });
 
 // GET /records/:id - Obtener expediente por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", protectRoute(["admin", "physio", "patient"]), async (req, res) => {
     const patientId = req.params.id;
+
     try {
         const patient = await Patient.findById(patientId);
 
@@ -78,7 +81,6 @@ router.get("/:id", async (req, res) => {
                 result: null,
             });
         }
-
         const record = await Record.find({
             patient: patient._id,
         });
@@ -86,9 +88,17 @@ router.get("/:id", async (req, res) => {
         if (!record) {
             return res.status(404).json({
                 error: "Expediente no encontrado",
-                result: "",
+                result: null,
             });
         }
+
+        if (req.user.rol === "patient" && req.user.id !== patientIdid) {
+			return res.status(403).json({
+				error: "Acceso no autorizado",
+				resul: ""
+			});
+		}
+
         res.status(200).json({
             error: "",
             result: record,
@@ -96,13 +106,13 @@ router.get("/:id", async (req, res) => {
     } catch (error) {
         res.status(500).json({
             error: "Error interno del servidor",
-            result: "",
+            result: null,
         });
     }
 });
 
-// POST /records - Crear un expediente médico
-router.post("/", async (req, res) => {
+// POST /records - Crear un expediente medico
+router.post("/", protectRoute(["admin", "physio"]), async (req, res) => {
     try {
         const newRecord = new Record(req.body);
         await newRecord.save();
@@ -113,20 +123,20 @@ router.post("/", async (req, res) => {
     } catch (error) {
         res.status(400).json({
             error: error.message,
-            result: "",
+            result: null,
         });
     }
 });
 
 // POST /records/:id/appointments - Añadir consultas a un expediente
-router.post("/:id/appointments", async (req, res) => {
+router.post("/:id/appointments", protectRoute(["admin", "physio"]), async (req, res) => {
     try {
         const record = await Record.findById(req.params.id);
 
         if (!record) {
             return res.status(404).json({
                 error: "Expediente no encontrado",
-                result: "",
+                result: null,
             });
         }
         record.appointments.push(req.body);
@@ -141,13 +151,13 @@ router.post("/:id/appointments", async (req, res) => {
         console.error(error);
         res.status(500).json({
             error: "Error interno del servidor" + error.message,
-            result: "",
+            result: null,
         });
     }
 });
 
-// DELETE /records/:id - Eliminar expediente médico
-router.delete("/:id", async (req, res) => {
+// DELETE /records/:id - Eliminar expediente medico
+router.delete("/:id", protectRoute(["admin", "physio"]), async (req, res) => {
     const recordId = req.params.id;
     try {
         const deletedRecord = await Record.findByIdAndDelete(recordId);
@@ -155,7 +165,7 @@ router.delete("/:id", async (req, res) => {
         if (!deletedRecord) {
             return res.status(404).json({
                 error: "Expediente no encontrado",
-                result: "",
+                result: null,
             });
         }
         res.status(200).json({
@@ -165,7 +175,7 @@ router.delete("/:id", async (req, res) => {
     } catch (error) {
         res.status(500).json({
             error: "Error interno del servidor",
-            result: "",
+            result: null,
         });
     }
 });

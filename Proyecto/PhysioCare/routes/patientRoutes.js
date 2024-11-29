@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Patient = require("../models/patient");
+const { protectRoute } = require("../auth/auth.js");
 
-// GET /patients - Obtener todos los pacientes
-router.get("/", async (req, res) => {
+router.get("/", protectRoute(["admin", "physio"]), async (req, res) => {
 	try {
 		const patients = await Patient.find();
 		if (patients.length === 0) {
@@ -18,10 +18,8 @@ router.get("/", async (req, res) => {
 	}
 });
 
-// GET /patients/find?surname=Sanz - Buscar pacientes por apellido
-router.get("/find", async (req, res) => {
+router.get("/find", protectRoute(["admin", "physio"]), async (req, res) => {
 	try {
-		// Normalizamos el apellido a minúsculas
 		const surname = req.query.surname;
 		let patients;
 		if (surname) {
@@ -54,7 +52,7 @@ router.get("/find", async (req, res) => {
 	}
 });
 // GET /patients/:id - Obtener paciente por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", protectRoute(["admin", "physio", "patient"]), async (req, res) => {
 	try {
 		const patient = await Patient.findById(req.params.id);
 		if (!patient) {
@@ -63,6 +61,13 @@ router.get("/:id", async (req, res) => {
 				result: null,
 			});
 		}
+		if (req.user.rol === "patient" && req.user.id !== req.params.id) {
+			return res.status(403).json({
+				error: "Acceso no autorizado",
+				resul: ""
+			});
+		}
+
 		res.status(200).json({
 			error: "",
 			result: patient,
@@ -76,7 +81,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST /patients - Insertar paciente
-router.post("/", async (req, res) => {
+router.post("/", protectRoute(["admin", "physio"]), async (req, res) => {
 	try {
 		const newPatient = new Patient(req.body);
 		await newPatient.save();
@@ -93,7 +98,7 @@ router.post("/", async (req, res) => {
 });
 
 // PUT /patients/:id - Actualizar paciente
-router.put("/:id", async (req, res) => {
+router.put("/:id", protectRoute(["admin", "physio"]), async (req, res) => {
 	const id = req.params.id;
 	const patientsInfo = req.body;
 
@@ -107,7 +112,7 @@ router.put("/:id", async (req, res) => {
 		if (!updatedPatient) {
 			return res.status(400).json({
 				error: "Error actualizando los datos del fisio",
-				result: "",
+				result: null,
 			});
 		}
 		res.status(200).json({
@@ -123,7 +128,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE /patients/:id - Eliminar paciente
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protectRoute(["admin"]), async (req, res) => {
 	const id = req.params.id;
 	try {
 		const deletedPatient = await Patient.findByIdAndDelete(id);

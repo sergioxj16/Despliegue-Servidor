@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Physio = require("../models/physio");
+const { protectRoute } = require("../auth/auth.js");
+
 
 // GET /physios - Obtener todos los fisioterapeutas
-router.get("/", async (req, res) => {
+router.get("/", protectRoute(["admin", "physio", "patient"]), async (req, res) => {
 	try {
 		const physios = await Physio.find();
 
@@ -26,7 +28,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET /physios/find - Buscar fisios por especialidad
-router.get("/find", async (req, res) => {
+router.get("/find", protectRoute(["admin", "physio", "patient"]), async (req, res) => {
 	try {
 		const { specialty } = req.query;
 		const physios = await Physio.find({
@@ -51,7 +53,7 @@ router.get("/find", async (req, res) => {
 });
 
 // GET /physios/:id - Obtener fisio por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", protectRoute(["admin", "physio", "patient"]), async (req, res) => {
 	try {
 		const physio = await Physio.findById(req.params.id);
 
@@ -74,7 +76,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST /physios - Insertar un fisio
-router.post("/", async (req, res) => {
+router.post("/", protectRoute(["admin"]), async (req, res) => {
 	try {
 		const newPhysio = new Physio(req.body);
 		await newPhysio.save();
@@ -91,17 +93,16 @@ router.post("/", async (req, res) => {
 });
 
 // PUT /physios/:id - Actualizar fisio
-router.put("/:id", async (req, res) => {
+router.put("/:id", protectRoute(["admin"]), async (req, res) => {
 	try {
 		const id = req.params.id;
+		const updateData = req.body;
 
-		// const updatedPhysio = await Physio.findByIdAndUpdate(req.params.id,req.body,{ new: true });
-
-		const updatedPhysio = await Physio.findByIdAndUpdate(id, {
-			...physioInfo,
-			new: true,
-			runValidators: true,
-		});
+		const updatedPhysio = await Physio.findByIdAndUpdate(
+			id,
+			updateData,
+			{ new: true, runValidators: true }
+		);
 
 		if (!updatedPhysio) {
 			return res.status(400).json({
@@ -122,7 +123,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE /physios/:id - Eliminar fisio
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protectRoute(["admin"]), async (req, res) => {
 	try {
 		const deletedPhysio = await Physio.findByIdAndDelete(req.params.id);
 		if (!deletedPhysio) {
