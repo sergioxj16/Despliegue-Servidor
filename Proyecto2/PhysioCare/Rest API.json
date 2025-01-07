@@ -1,0 +1,1006 @@
+{
+	"info": {
+		"_postman_id": "8942d602-d8f9-48bb-8bf3-0ee85db0cd92",
+		"name": "Rest API",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38789155"
+	},
+	"item": [
+		{
+			"name": "Patients",
+			"item": [
+				{
+					"name": "Get patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get patients Find",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/find?surname=López",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"find"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "López"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get patients ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"{{id}}"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"Luis\",\n   \"surname\": \"Siu\",\n   \"birthDate\": \"1985-06-15T00:00:00Z\",\n   \"address\": \"Calle Luisillo, Alicante\",\n   \"insuranceNumber\": \"909090909\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Put patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"Paolo\",\n   \"surname\": \"Siu\",\n   \"birthDate\": \"1985-06-15T00:00:00Z\",\n   \"address\": \"Calles Luisillos, Alicante\",\n   \"insuranceNumber\": \"909090909\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients/:id\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								":id\n"
+							],
+							"variable": [
+								{
+									"key": "id\n",
+									"value": "6745077619b8b7750b41da4c"
+								}
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6745077619b8b7750b41da4c"
+								}
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Physios",
+			"item": [
+				{
+					"name": "Get physios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/physios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"physios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get physios Find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/physios/find?specialty=sPorTs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"physios",
+								"find"
+							],
+							"query": [
+								{
+									"key": "specialty",
+									"value": "sPorTs"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get physios ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/physios/67451785bee209ab42f64e54",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"physios",
+								"67451785bee209ab42f64e54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post physios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adof\",\r\n    \"surname\": \"Wuan\",\r\n    \"specialty\": \"Sports\",\r\n    \"licenseNumber\": \"A2345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/physios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"physios"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Put physios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Adofito\",\n    \"surname\": \"Wuanalfe\",\n    \"specialty\": \"Sportse\",\n    \"licenseNumber\": \"A23456781\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/physios/:id\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"physios",
+								":id\n"
+							],
+							"variable": [
+								{
+									"key": "id\n",
+									"value": "674517c5bee209ab42f64e59"
+								}
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete physios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/physios/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"physios",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "674517c5bee209ab42f64e59"
+								}
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Records",
+			"item": [
+				{
+					"name": "Get records",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/records",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"records"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get records Find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/records/find",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"records",
+								"find"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "López",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "siu",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "calle",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get records ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/records/673f37961eaeb7c9fd8d652c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"records",
+								"673f37961eaeb7c9fd8d652c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"patient\": \"673f37961eaeb7c9fd8d652c\",\r\n  \"medicalRecord\": \"Paciente con antecedentes de lesiones en rodilla y cadera. Ha sido tratado previamente por distensiones y fracturas en ambas extremidades. Se encuentra actualmente en rehabilitación física para mejorar la movilidad y reducir el dolor.\",\r\n  \"appointments\": [\r\n    {\r\n      \"date\": \"2024-02-10T00:00:00.000Z\",\r\n      \"physio\": \"673f37961eaeb7c9fd8d6536\",\r\n      \"diagnosis\": \"Distensión de ligamentos de la rodilla derecha\",\r\n      \"treatment\": \"Rehabilitación con ejercicios de fortalecimiento y estiramientos. Enfoque en la movilidad de la rodilla y el fortalecimiento de los músculos alrededor de la articulación.\",\r\n      \"observations\": \"Se recomienda evitar actividad intensa por 6 semanas. Aplicar hielo en la rodilla dos veces al día para reducir la inflamación.\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/records",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"records"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Put records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2024-04-25T00:00:00.000Z\",\r\n  \"physio\": \"673f37961eaeb7c9fd8d6536\",\r\n  \"diagnosis\": \"Rehabilitación avanzada de rodilla\",\r\n  \"treatment\": \"Fortalecimiento muscular avanzado\",\r\n  \"observations\": \"Próxima revisión en 4 semanas\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/records/673f37961eaeb7c9fd8d6542/appointments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"records",
+								"673f37961eaeb7c9fd8d6542",
+								"appointments"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDkxYThmYzIwOWEzYmIxNDE2YzJjYyIsImxvZ2luIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTczMjg0NTI2NiwiZXhwIjoxNzMyOTE3MjY2fQ.DM0ouV5ApFMqGQkxd8nodPtN_qJAd635awO8ewV6kWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/records/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"records",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "673f37961eaeb7c9fd8d6547"
+								}
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login Obtener Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"login\": \"admin\", \r\n  \"password\": \"1234567\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

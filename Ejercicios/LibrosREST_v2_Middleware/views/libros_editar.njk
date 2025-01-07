@@ -1,0 +1,44 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Contactos | Edición{% endblock %}
+
+{% block contenido %}
+
+    <h1>Edición de libro</h1>
+
+    <form action="/libros/{{ libro.id }}" method="post">
+        <input type="hidden" name="_method" value="put">
+        <div class="form-group">
+            <label>Titulo:
+                <input type="text" class="form-control" name="titulo" 
+                placeholder="Titulo del libro..."
+                value="{{ libro.titulo }}">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Editorial:
+                <input type="text" class="form-control" name="editorial"
+                placeholder="editorial del libro..."
+                value="{{ libro.editorial }}">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>precio:
+                <input type="number" class="form-control" name="precio"
+                placeholder="precio del libro..."
+                value="{{ libro.precio }}">
+            </label>
+        </div>
+                <div class="form-group">
+                <label>Autor:
+                <input type="text" class="form-control" name="autor"
+                placeholder="autor   del libro..."
+                value="{{ libro.autor }}">
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Enviar
+        </button>
+    </form>
+
+{% endblock %}
