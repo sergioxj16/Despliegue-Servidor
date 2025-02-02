@@ -1,3 +1,4 @@
+// patientRoutes.js
 const express = require("express");
 const router = express.Router();
 const Patient = require("../models/patient");
@@ -64,7 +65,7 @@ router.get("/:id", protectRoute(["admin", "physio", "patient"]), async (req, res
 		if (req.user.rol === "patient" && req.user.id !== req.params.id) {
 			return res.status(403).json({
 				error: "Acceso no autorizado",
-				resul: ""
+				result: null,
 			});
 		}
 
@@ -107,7 +108,7 @@ router.put("/:id", protectRoute(["admin", "physio"]), async (req, res) => {
 			...patientsInfo,
 			new: true,
 			runValidators: true,
-		});
+		});		
 
 		if (!updatedPatient) {
 			return res.status(400).json({
