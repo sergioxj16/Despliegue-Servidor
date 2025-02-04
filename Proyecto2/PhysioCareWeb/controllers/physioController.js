@@ -41,32 +41,6 @@ const findPhysioBySpecialty = async (req, res) => {
   }
 };
 
-const findPhysioBySurname = async (req, res) => {
-  let { surname } = req.query;
-  surname = surname ? surname.trim() : "";
-
-  try {
-    if (!surname) {
-      return showPhysios(req, res);
-    }
-
-    if (typeof surname !== 'string' || surname === "") {
-      return res.render("physios/physio_list", { error: "Invalid surname provided." });
-    }
-
-    const physios = await Physio.find({ surname: { $regex: surname, $options: "i" } });
-
-    if (physios.length === 0) {
-      return res.render("physios/physio_list", { error: "No physios found with that surname." });
-    }
-
-    res.render("physios/physio_list", { physios });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error while searching for physios." });
-  }
-};
-
 const showAddPhysio = (req, res) => {
   res.render("physios/new_physio");
 };
@@ -197,6 +171,5 @@ module.exports = {
   deletePhysio,
   showAddPhysio,
   addPhysio,
-  editPhysio,
-  findPhysioBySurname
+  editPhysio
 };

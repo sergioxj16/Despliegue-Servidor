@@ -6,7 +6,7 @@ const upload = require("../utils/uploads.js");
 const router = express.Router();
 
 router.post("/", allowedRoles("admin", "physio"), upload.upload.single("image"), patientController.addPatient);
-router.post("/:id", allowedRoles("admin"), upload.upload.single("image"), patientController.editPatient);
+router.post("/:id", allowedRoles("admin", "physio"), upload.upload.single("image"), patientController.editPatient);
 
 router.get("/", allowedRoles("admin", "physio"), patientController.showPatients);
 router.get("/new", allowedRoles("admin", "physio"), patientController.showAddPatient);

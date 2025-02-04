@@ -12,7 +12,7 @@ router.get("/new", allowedRoles("admin"), physioController.showAddPhysio);
 router.get("/find", allowedRoles("admin"), physioController.findPhysioBySpecialty);
 router.get("/edit/:id", allowedRoles("admin"), physioController.showEditPhysio);
 router.get("/:id", allowedRoles("admin", "physio", "patient"), physioController.getPhysioDetails);
-router.get("/findSurname", allowedRoles("admin"), physioController.findPhysioBySurname);
+
 
 
 router.delete("/:id", allowedRoles("admin"), physioController.deletePhysio);

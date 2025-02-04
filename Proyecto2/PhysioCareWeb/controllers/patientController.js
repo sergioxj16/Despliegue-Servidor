@@ -45,44 +45,32 @@ const showAddPatient = (req, res) => {
 
 const addPatient = async (req, res) => {
   const { name, surname, birthDate, address, insuranceNumber, login, password } = req.body;
-
-  const patientData = {
-    name,
-    surname,
-    birthDate,
-    address,
-    insuranceNumber,
-    image: req.file ? req.file.filename : undefined,
-  };
-
-  const userData = {
-    login,
-    password,
-    role: 'patient',
-  };
+  const image = req.file?.filename;
 
   try {
-    const newPatient = new Patient(patientData);
-    const savedPatient = await newPatient.save();
+    const savedPatient = await new Patient({ name, surname, birthDate, address, insuranceNumber, image }).save();
 
-    const newUser = new User({
-      _id: savedPatient._id,
-      login: userData.login,
-      password: userData.password,
-      role: userData.role,
-    });
+    await new User({ _id: savedPatient._id, login, password, rol: 'patient' }).save();
 
-    await newUser.save();
-    res.render("patients/patient_list", { patients: result });
+    res.redirect(req.baseUrl);
   } catch (error) {
-    const errors = error.errors || {};
+    let errors = {};
+
+    if (error.errors) {
+      errors = Object.fromEntries(
+        Object.entries(error.errors).map(([key, err]) => [key, err.message])
+      );
+    }
+
     if (error.code === 11000) {
       errors.login = "Login already exists";
     }
 
-    res.render("patients/new_patient", { errors, patient: patientData, user: userData });
+    res.render("patients/new_patient", { errors, patient: req.body, user: { login, password, rol: 'patient' } });
   }
 };
+
+
 
 const editPatient = (req, res) => {
   const updateData = {

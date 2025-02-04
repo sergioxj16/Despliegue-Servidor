@@ -8,7 +8,7 @@
 
         <form action="/patients/find" method="get" class="mb-4">
             <div class="d-flex gap-2 justify-content-center">
-                <input type="text" name="surname" class="form-control w-50" placeholder="Search by last name" style="padding: 0.375rem 0.75rem;"/>
+                <input type="text" name="surname" class="form-control w-50" placeholder="Search by surname" style="padding: 0.375rem 0.75rem;"/>
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-search"></i> Search
                 </button>
@@ -18,7 +18,7 @@
         <ul class="list-group">
             {% for patient in patients %}
                 <li class="list-group-item d-flex align-items-center {% if loop.index % 2 == 0 %}list-group-item-secondary{% endif %}">
-                    <span class="fw-bold text-secondary">{{ patient.surname }}, {{ patient.name }}</span>
+                    <span class="fw-bold text-secondary">{{ patient.name }}, {{ patient.surname }} </span>
                     <div class="ms-auto d-flex gap-2">
                         <a href="/patients/{{ patient.id }}" class="btn btn-success hover-invert">View Details</a>
                         <a href="/patients/edit/{{ patient.id }}" class="btn btn-primary hover-invert">Edit Patient</a>
