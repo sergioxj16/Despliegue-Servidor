@@ -182,25 +182,20 @@ createUsers();
 // Function to create users for testing
 async function createUsers() {
   try {
-
-    const encryptedAdminPw = await bcrypt.hash("admin", 10);
-    const encryptedPhysioPw = await bcrypt.hash("physio", 10);
-    const encryptedPatientPw = await bcrypt.hash("patient", 10);
-
     await User.create([
       {
         login: "admin",
-        password: encryptedAdminPw,
+        password: 1234,
         rol: "admin",
       },
       {
         login: "physio",
-        password: encryptedPhysioPw,
+        password: 1234,
         rol: "physio",
       },
       {
         login: "patient",
-        password: encryptedPatientPw,
+        password: 1234,
         rol: "patient",
       },
     ]);
