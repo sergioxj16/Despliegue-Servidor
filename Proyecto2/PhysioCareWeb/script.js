@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Patient = require("./models/patient");
 const Physio = require("./models/physio");
 const Record = require("./models/record");
+const User = require("./models/user");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -182,26 +183,38 @@ createUsers();
 // Function to create users for testing
 async function createUsers() {
   try {
+
+    const encryptedAdminPw = await bcrypt.hash("admin", 10);
+    const encryptedPhysioPw = await bcrypt.hash("physio", 10);
+    const encryptedPatientPw = await bcrypt.hash("patient", 10);
+
     await User.create([
       {
         login: "admin",
-        password: 1234,
+        password: encryptedAdminPw,
         rol: "admin",
       },
       {
         login: "physio",
-        password: 1234,
+        password: encryptedPhysioPw,
         rol: "physio",
       },
       {
         login: "patient",
-        password: 1234,
+        password: encryptedPatientPw,
         rol: "patient",
       },
     ]);
   } catch (error) {
   }
 }
+
+const adminUser = new User({
+  login: 'admin',
+  password: 'aaaaaaa',
+  rol: 'admin',
+});
+adminUser.save()
 
 // Connect to MongoDB database
 mongoose
