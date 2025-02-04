@@ -1,0 +1,49 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Medical Records | List{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <h1 class="text-center my-4 display-4 text-primary">Medical Records List</h1>
+
+        <form action="/records/find" method="get">
+            <div class="d-flex gap-2">
+                <input type="text" name="surname" class="form-control" placeholder="Search by surname"/>
+                <button type="submit" class="btn btn-primary" style="margin-right: 0.3em;">
+                    <i class="bi bi-search"></i> Search
+                </button>
+            </div>
+        </form>
+
+        {% if error %}
+            <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+
+        <ul class="list-group">
+            <!-- Header -->
+            <li class="list-group-item d-flex bg-light fw-bold">
+                <span class="flex-grow-1">Patient Name</span>
+                <span class="flex-grow-1">Appointments</span>
+                <span class="text-end">Actions</span>
+            </li>
+
+            <!-- Records -->
+            {% for record in records %}
+                <li class="list-group-item d-flex {% if loop.index % 2 == 0 %}list-group-item-secondary{% endif %}">
+                    <span class="flex-grow-1 fw-bold">{{ record.patient.name }} {{ record.patient.surname }}</span>
+
+                    <div class="ms-auto d-flex gap-2">
+                        <a href="/records/{{ record._id }}" class="btn btn-success">View details</a>
+                        <a href="/records/{{ record._id }}/appointments/new" class="btn btn-primary">Add appointment</a>
+                        <form action="/records/{{ record._id }}" method="post" class="d-inline">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            {% else %}
+                <li class="list-group-item">No records to show</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

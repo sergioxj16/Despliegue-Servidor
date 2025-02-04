@@ -1,0 +1,31 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Physio | Details{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Physio Details</h1>
+
+        <div class="row justify-content-center">
+            <!-- Left side with physio information -->
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm">
+                    <p><strong>Name:</strong> {{ physio.name }}</p>
+                    <p><strong>Surname:</strong> {{ physio.surname }}</p>
+                    <p><strong>Specialty:</strong> {{ physio.specialty }}</p>
+                    <p><strong>License number:</strong> {{ physio.licenseNumber }}</p>
+                    <p>
+                        <a href="/physios" class="btn btn-success btn-block">Back</a>
+                    </p>
+                </div>
+            </div>
+
+            {% if physio.image %}
+                <!-- Right side with profile image -->
+                <div class="col-md-4 d-flex justify-content-center">
+                    <img class="img-thumbnail img-fluid" style="max-width: 250px;" src="/public/uploads/{{ physio.image }}">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

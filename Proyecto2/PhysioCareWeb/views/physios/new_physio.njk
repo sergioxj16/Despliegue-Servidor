@@ -1,0 +1,106 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Physios | New{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Add Physio</h1>
+        <div class="d-flex justify-content-center">
+            <form action="/physios" method="POST" enctype="multipart/form-data" style="max-width: 500px; width: 100%;">
+                <!-- Login -->
+                <div class="form-group">
+                    <label for="login">Login:</label>
+                    <input 
+                        type="text" 
+                        class="form-control {% if errors.login %}is-invalid{% endif %}" 
+                        id="login" 
+                        name="login" 
+                        value="{{ physio.login | default('') }}" 
+                        placeholder="At least 4 characters" 
+                        required>
+                    {% if errors.login %}
+                        <div class="invalid-feedback">{{ errors.login }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input 
+                        type="password" 
+                        class="form-control {% if errors.password %}is-invalid{% endif %}" 
+                        id="password" 
+                        name="password" 
+                        placeholder="At least 7 characters" 
+                        required>
+                    {% if errors.password %}
+                        <div class="invalid-feedback">{{ errors.password }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control {% if errors.name %}is-invalid{% endif %}" 
+                           name="name" id="name" placeholder="Physio's name..." value="{{ physio.name }}">
+                    {% if errors.name %}
+                        <div class="invalid-feedback">{{ errors.name }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Surname -->
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input type="text" class="form-control {% if errors.surname %}is-invalid{% endif %}" 
+                           name="surname" id="surname" placeholder="Physio's surname..." value="{{ physio.surname }}">
+                    {% if errors.surname %}
+                        <div class="invalid-feedback">{{ errors.surname }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Specialty -->
+                <div class="form-group">
+                    <label for="specialty">Specialty:</label>
+                    <select class="form-control {% if errors.specialty %}is-invalid{% endif %}" 
+                            name="specialty" id="specialty" required>
+                        <option value="">Select specialty...</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Neurological">Neurological</option>
+                        <option value="Pediatric">Pediatric</option>
+                        <option value="Geriatric">Geriatric</option>
+                        <option value="Oncological">Oncological</option>
+                    </select>
+                    {% if errors.specialty %}
+                        <div class="invalid-feedback">{{ errors.specialty }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- License Number -->
+                <div class="form-group">
+                    <label for="licenseNumber">License number:</label>
+                    <input type="text" class="form-control {% if errors.licenseNumber %}is-invalid{% endif %}" 
+                           name="licenseNumber" id="licenseNumber" placeholder="Physio's license number" value="{{ physio.licenseNumber }}">
+                    {% if errors.licenseNumber %}
+                        <div class="invalid-feedback">{{ errors.licenseNumber }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Profile Image -->
+                <div class="form-group">
+                    <label for="image">Profile image:</label>
+                    <input type="file" class="form-control {% if errors.image %}is-invalid{% endif %}" 
+                           name="image" id="image">
+                    {% if errors.image %}
+                        <div class="invalid-feedback">{{ errors.image }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="/physios" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

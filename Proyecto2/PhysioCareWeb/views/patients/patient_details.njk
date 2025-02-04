@@ -1,0 +1,55 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Patient | Details{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Patient Details</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm">
+                    <div class="mb-3">
+                        <strong>First Name:</strong>
+                        <p>{{ patient.name }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Last Name:</strong>
+                        <p>{{ patient.surname }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Birth Date:</strong>
+                        <p>{{ patient.birthDate | formatDate }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Address:</strong>
+                        <p>{{ patient.address }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Insurance Number:</strong>
+                        <p>{{ patient.insuranceNumber }}</p>
+                    </div>
+                    {% if user %}
+                        <div class="mb-3">
+                            <strong>Login:</strong>
+                            <p>{{ user.login }}</p>
+                        </div>
+                    {% else %}
+                        <div class="mb-3">
+                            <strong>Login:</strong>
+                            <p>Not available</p>
+                        </div>
+                    {% endif %}
+                    <div class="text-center mt-4">
+                        <a href="/patients" class="btn btn-success">Back</a>
+                    </div>
+                </div>
+            </div>
+
+            {% if patient.image %}
+                <div class="col-md-4 text-center">
+                    <img class="img-fluid rounded shadow-sm" style="max-width: 250px;" src="/public/uploads/{{ patient.image }}" alt="Patient profile image">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,3 +1,69 @@
-<div class="alert alert-secondary">
-    <a href="/contactos">Listado de contactos</a>
-</div>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a href="/" class="text-decoration-none">
+                <h1 class="text-white fs-5 pt-2 ps-2 pe-2 pr-2 text-center d-block d-lg-inline">PHYSIOCARE</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Patients
+                            </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="/patients/">Patient List</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/patients/new">Add Patient</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Physios
+                            </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="/physios/">Physiotherapists</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/physios/new">Add Physiotherapist</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Records
+                            </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="/records">Record List</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/records/new">Add Record</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    {% if (session and session.user) %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auth/logout">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auth/login">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

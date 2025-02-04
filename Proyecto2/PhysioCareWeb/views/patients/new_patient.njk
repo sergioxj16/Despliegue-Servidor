@@ -1,0 +1,133 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Patients | New{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-4">Insert New Patient</h1>
+                <form action="/patients" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="login">Login:</label>
+                        <input 
+                            type="text" 
+                            class="form-control {% if errors.login %}is-invalid{% endif %}" 
+                            id="login" 
+                            name="login" 
+                            value="{{ patient.login | default('') }}" 
+                            placeholder="At least 4 characters" 
+                            required>
+                        {% if errors.login %}
+                            <div class="invalid-feedback">{{ errors.login }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input 
+                            type="password" 
+                            class="form-control {% if errors.password %}is-invalid{% endif %}" 
+                            id="password" 
+                            name="password" 
+                            placeholder="At least 7 characters" 
+                            required>
+                        {% if errors.password %}
+                            <div class="invalid-feedback">{{ errors.password }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">First Name:</label>
+                        <input 
+                            type="text" 
+                            class="form-control {% if errors.name %}is-invalid{% endif %}" 
+                            name="name" 
+                            id="name" 
+                            value="{{ patient.name | default('') }}" 
+                            placeholder="Patient's first name..." 
+                            required>
+                        {% if errors.name %}
+                            <div class="invalid-feedback">{{ errors.name }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="surname">Last Name:</label>
+                        <input 
+                            type="text" 
+                            class="form-control {% if errors.surname %}is-invalid{% endif %}" 
+                            name="surname" 
+                            id="surname" 
+                            value="{{ patient.surname | default('') }}" 
+                            placeholder="Patient's last name..." 
+                            required>
+                        {% if errors.surname %}
+                            <div class="invalid-feedback">{{ errors.surname }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate">Birth Date:</label>
+                        <input 
+                            type="date" 
+                            class="form-control {% if errors.birthDate %}is-invalid{% endif %}" 
+                            name="birthDate" 
+                            id="birthDate" 
+                            value="{{ patient.birthDate | default('') }}" 
+                            required>
+                        {% if errors.birthDate %}
+                            <div class="invalid-feedback">{{ errors.birthDate }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input 
+                            type="text" 
+                            class="form-control {% if errors.address %}is-invalid{% endif %}" 
+                            name="address" 
+                            id="address" 
+                            value="{{ patient.address | default('') }}" 
+                            placeholder="Patient's address">
+                        {% if errors.address %}
+                            <div class="invalid-feedback">{{ errors.address }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="insuranceNumber">Insurance Number:</label>
+                        <input 
+                            type="text" 
+                            class="form-control {% if errors.insuranceNumber %}is-invalid{% endif %}" 
+                            name="insuranceNumber" 
+                            id="insuranceNumber" 
+                            value="{{ patient.insuranceNumber | default('') }}" 
+                            placeholder="Patient's insurance number" 
+                            required>
+                        {% if errors.insuranceNumber %}
+                            <div class="invalid-feedback">{{ errors.insuranceNumber }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Profile Image:</label>
+                        <input 
+                            type="file" 
+                            class="form-control {% if errors.image %}is-invalid{% endif %}" 
+                            name="image" 
+                            id="image">
+                        {% if errors.image %}
+                            <div class="invalid-feedback">{{ errors.image }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <a href="/patients" class="btn btn-secondary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

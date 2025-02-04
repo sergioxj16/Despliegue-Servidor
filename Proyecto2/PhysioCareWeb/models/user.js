@@ -1,23 +1,22 @@
-// user.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-
-const userSchema = new mongoose.Schema({
-    login: {
-        type: String,
-        required: true,
-        minlength: 4,
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 7,
-    },
-    rol: {
-        type: String,
-        required: true,
-        enum: ['admin', 'physio', 'patient'],
-    },
+let userSchema = new mongoose.Schema({
+  login: {
+    type: String,
+    required: [true, "Login is required."],
+    minlength: [4, "Login must be at least 4 characters."],
+  },
+  password: {
+    type: String,
+    required: [true, "Password is required."],
+    minlength: [7, "Password must be at least 7 characters."],
+  },
+  rol: {
+    type: String,
+    required: true,
+    enum: ['admin', 'patient', 'physio'],
+  }
 });
-const User = mongoose.model("Users", userSchema);
+
+let User = mongoose.model("users", userSchema);
 module.exports = User;
