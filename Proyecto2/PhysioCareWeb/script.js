@@ -210,7 +210,7 @@ async function createUsers() {
 
 // Connect to MongoDB database
 mongoose
-  .connect(process.env.DATABASE_URL)
+  .connect(process.env.DB_URL)
   .then(() => {
     loadData();
   })
@@ -218,4 +218,4 @@ mongoose
 let app = express();
 
 // Puesta en marcha del servidor
-app.listen(process.env.PUERTO);
+app.listen(process.env.PORT);
